@@ -3,13 +3,13 @@
 Funcionalidade: Google Pesquisa
 
 @pesquisaSuccess
-Cenario: Pesquisa Valida
+Cenario: FB - Pesquisa Valida
 	Dado que eu esteja na pagina inicial do google
 	Quando eu pesquisar por um assunto
 	Entao me retorna os resultados indexados
 
 @pesquisaUndefined
-Cenario: Pesquisa vazia
+Cenario: A1 - Pesquisa vazia
 	Dado que eu esteja na pagina inicial do google
 	Quando eu pesquisar sem preencher o assunto
 	Entao continuarei na mesma pagian aguardando um assunto
