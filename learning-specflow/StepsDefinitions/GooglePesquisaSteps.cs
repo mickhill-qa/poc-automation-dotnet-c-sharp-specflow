@@ -1,7 +1,9 @@
-﻿using System;
+﻿using learning_specflow.PageObjects;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using TechTalk.SpecFlow;
 
-namespace learning_specflow
+namespace learning_specflow.StepsDefinitions
 {
     [Binding]
     public class GooglePesquisaSteps
@@ -43,7 +45,7 @@ namespace learning_specflow
         public void EntaoMeRetornaOsResultadosIndexados()
         {
             String txtAssertPage = paginaInicial.VerResultadoPesquisa();
-            //assertEquals("Aproximadamente", txtAssertPage);
+            Assert.AreEqual("Aproximadamente", txtAssertPage);
         }
 
 
@@ -62,7 +64,7 @@ namespace learning_specflow
         public void EntaoContinuareiNaMesmaPagianAguardandoUmAssunto()
         {
             Boolean mesmaPagina = paginaInicial.ConferirSeEstouNaPaginaInicial();
-            //assertEquals(true, mesmaPagina);
+            Assert.AreEqual(true, mesmaPagina);
         }
     }
 }
