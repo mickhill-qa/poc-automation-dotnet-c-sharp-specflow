@@ -13,7 +13,6 @@ namespace learning_specflow.StepsDefinitions
         [BeforeScenario]
         public void Init()
         {
-            paginaInicial.AbrirPagina();
         }
 
         [AfterScenario]
@@ -27,6 +26,7 @@ namespace learning_specflow.StepsDefinitions
         [Given(@"que eu esteja na pagina inicial do google")]
         public void DadoQueEuEstejaNaPaginaInicialDoGoogle()
         {
+            paginaInicial.AbrirPagina();
         }
 
 
