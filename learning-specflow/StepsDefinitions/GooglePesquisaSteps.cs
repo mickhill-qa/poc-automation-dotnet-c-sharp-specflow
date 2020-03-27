@@ -13,6 +13,7 @@ namespace learning_specflow.StepsDefinitions
         [BeforeScenario]
         public void Init()
         {
+            paginaInicial.AbrirPagina();
         }
 
         [AfterScenario]
@@ -26,7 +27,7 @@ namespace learning_specflow.StepsDefinitions
         [Given(@"que eu esteja na pagina inicial do google")]
         public void DadoQueEuEstejaNaPaginaInicialDoGoogle()
         {
-            paginaInicial.AbrirPagina();
+            paginaInicial.ConferirSeEstouNaPaginaInicial();
         }
 
 
@@ -63,8 +64,7 @@ namespace learning_specflow.StepsDefinitions
         [Then(@"continuarei na mesma pagian aguardando um assunto")]
         public void EntaoContinuareiNaMesmaPagianAguardandoUmAssunto()
         {
-            Boolean mesmaPagina = paginaInicial.ConferirSeEstouNaPaginaInicial();
-            Assert.AreEqual(true, mesmaPagina);
+            paginaInicial.ConferirSeEstouNaPaginaInicial();
         }
     }
 }

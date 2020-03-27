@@ -1,9 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 
 namespace learning_specflow.PageObjects
 {
@@ -45,10 +43,10 @@ namespace learning_specflow.PageObjects
             return browser.FindElement(txtResultado).Text.Substring(0, 15);
         }
 
-        public Boolean ConferirSeEstouNaPaginaInicial()
+        public void ConferirSeEstouNaPaginaInicial()
         {
             String paginaAtual = browser.Url.ToString();
-            return url.Equals(paginaAtual);
+            Assert.AreEqual(true, url.Equals(paginaAtual));
         }
 
         public void FecharPagina()
