@@ -356,3 +356,4 @@ MigrationBackup/
 
 # Mick Hill
 *.feature.cs
+.DS_Store

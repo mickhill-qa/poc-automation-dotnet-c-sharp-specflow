@@ -11,7 +11,7 @@ namespace learning_specflow
 
         public static IWebDriver GetBrownser()
         {
-            string browserConfig = "ChromeHeadless";
+            string browserConfig = "Chrome";
             IWebDriver Browser;
 
             switch (browserConfig)
