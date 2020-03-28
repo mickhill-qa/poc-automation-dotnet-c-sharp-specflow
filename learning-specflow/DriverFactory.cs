@@ -8,19 +8,29 @@ namespace learning_specflow
 {
     class DriverFactory
     {
+        public enum Browser
+        {
+            CHROME,
+            CHROME_HEADLESS,
+            FIREFOX,
+            IE,
+        }
 
         public static IWebDriver GetBrownser()
         {
-            string browserConfig = "Chrome";
-            IWebDriver Browser;
+            return GetBrownser(Browser.CHROME); // Browser Default
+        }
 
-            switch (browserConfig)
+        public static IWebDriver GetBrownser(Browser browserUser)
+        {
+            IWebDriver resultBrowser;
+
+            switch (browserUser)
             {
-                case "Chrome":
-                    Browser = new ChromeDriver();
+                case Browser.CHROME:
+                    resultBrowser = new ChromeDriver();
                     break;
-
-                case "ChromeHeadless":
+                case Browser.CHROME_HEADLESS:
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments(
                         new List<string>()
@@ -33,21 +43,18 @@ namespace learning_specflow
                     );
                     ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService();
                     chromeDriverService.HideCommandPromptWindow = true;
-                    Browser = new ChromeDriver(chromeDriverService, chromeOptions);
+                    resultBrowser = new ChromeDriver(chromeDriverService, chromeOptions);
                     break;
-
-                case "Firefox":
-                    Browser = new FirefoxDriver();
+                case Browser.FIREFOX:
+                    resultBrowser = new FirefoxDriver();
                     break;
-
-                case "IE":
+                case Browser.IE:
                     //Browser = new InternetExplorerDriver();
                     //break;
-
                 default:
                     throw new NotSupportedException("Browser Nao Suportado");
             }
-            return Browser;
+            return resultBrowser;
         }
     }
 }
