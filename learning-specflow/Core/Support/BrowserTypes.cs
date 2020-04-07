@@ -1,14 +1,14 @@
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 
-namespace learning_specflow
+namespace learning_specflow.Core.Support
 {
-    class DriverFactory
+    class BrowserTypes
     {
-        public enum Browser
+        public enum Browsers
         {
             CHROME,
             CHROME_HEADLESS,
@@ -18,19 +18,19 @@ namespace learning_specflow
 
         public static IWebDriver GetBrownser()
         {
-            return GetBrownser(Browser.CHROME); // Browser Default
+            return GetBrownser(Browsers.CHROME); // Browser Default
         }
 
-        public static IWebDriver GetBrownser(Browser browserUser)
+        public static IWebDriver GetBrownser(Browsers browserUser)
         {
             IWebDriver resultBrowser;
 
             switch (browserUser)
             {
-                case Browser.CHROME:
+                case Browsers.CHROME:
                     resultBrowser = new ChromeDriver();
                     break;
-                case Browser.CHROME_HEADLESS:
+                case Browsers.CHROME_HEADLESS:
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments(
                         new List<string>()
@@ -45,12 +45,12 @@ namespace learning_specflow
                     chromeDriverService.HideCommandPromptWindow = true;
                     resultBrowser = new ChromeDriver(chromeDriverService, chromeOptions);
                     break;
-                case Browser.FIREFOX:
+                case Browsers.FIREFOX:
                     resultBrowser = new FirefoxDriver();
                     break;
-                case Browser.IE:
-                    //Browser = new InternetExplorerDriver();
-                    //break;
+                case Browsers.IE:
+                //Browser = new InternetExplorerDriver();
+                //break;
                 default:
                     throw new NotSupportedException("Browser Nao Suportado");
             }

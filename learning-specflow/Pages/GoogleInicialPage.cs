@@ -1,26 +1,19 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using System;
 
-namespace learning_specflow.PageObjects
+namespace learning_specflow.Pages
 {
-    class GoogleInicialPage
+    class GoogleInicialPage : BasePage
     {
-        private readonly IWebDriver browser;
-        private readonly Actions actions;
+        public GoogleInicialPage(IWebDriver _browser) : base(_browser) { }
 
-        private const string url = "https://www.google.com.br/";
+        private string url = "https://www.google.com.br/";
 
-        private readonly By inputPesrquisar = By.XPath("//input[@name='q']");
-        private readonly By btnPesquisar = By.XPath("(//input[@name='btnK'])[2]");
-        private readonly By txtResultado = By.Id("result-stats");
-
-        public GoogleInicialPage()
-        {
-            browser = DriverFactory.GetBrownser();
-            actions = new Actions(browser);
-        }
+        private By inputPesrquisar = By.XPath("//input[@name='q']");
+        private By optionsPesrquisa = By.CssSelector("#tsf > div:nth-child(2) > div > div > div > ul > li");
+        private By btnPesquisar = By.XPath("(//input[@name='btnK'])[2]");
+        private By txtResultado = By.Id("result-stats");
 
         public void AbrirPagina()
         {
@@ -29,17 +22,22 @@ namespace learning_specflow.PageObjects
 
         public void PreencherFormPesquisa(string pesquisa)
         {
+            wait.Until(e => e.FindElement(inputPesrquisar));
             browser.FindElement(inputPesrquisar).SendKeys(pesquisa);
+
+            wait.Until(e => e.FindElement(optionsPesrquisa));
             actions.SendKeys(Keys.Escape).Perform();
         }
 
         public void Pesquisar()
         {
+            wait.Until(e => e.FindElement(btnPesquisar));
             browser.FindElement(btnPesquisar).Click();
         }
 
         public string VerResultadoPesquisa()
         {
+            wait.Until(e => e.FindElement(txtResultado));
             return browser.FindElement(txtResultado).Text.Substring(0, 15);
         }
 
@@ -47,12 +45,6 @@ namespace learning_specflow.PageObjects
         {
             String paginaAtual = browser.Url.ToString();
             Assert.AreEqual(true, url.Equals(paginaAtual));
-        }
-
-        public void FecharPagina()
-        {
-            browser.Close();
-            browser.Dispose();
         }
     }
 }

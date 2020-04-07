@@ -1,32 +1,34 @@
-﻿using learning_specflow.PageObjects;
+﻿using learning_specflow.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using TechTalk.SpecFlow;
 
-namespace learning_specflow.StepsDefinitions
+namespace learning_specflow.Steps
 {
     [Binding]
-    public class GooglePesquisaSteps
+    class GooglePesquisaSteps : BaseSteps
     {
-        GoogleInicialPage paginaInicial = new GoogleInicialPage();
+        GoogleInicialPage paginaInicial;
 
-        [BeforeScenario]
-        public void Init()
+
+
+        /**
+         * Paginas necessaria aos passos
+         **/
+        public GooglePesquisaSteps()
         {
-            paginaInicial.AbrirPagina();
+            paginaInicial = new GoogleInicialPage(browser);
         }
 
-        [AfterScenario]
-        public void Finish()
-        {
-            paginaInicial.FecharPagina();
-        }
 
 
-
+        /**
+         * Contexto
+         **/
         [Given(@"que eu esteja na pagina inicial do google")]
         public void DadoQueEuEstejaNaPaginaInicialDoGoogle()
         {
+            paginaInicial.AbrirPagina();
             paginaInicial.ConferirSeEstouNaPaginaInicial();
         }
 
