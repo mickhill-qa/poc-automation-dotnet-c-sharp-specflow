@@ -22,3 +22,4 @@ BDD + C# + SpecFlow + Selenium.
 - Selenium.WebDriver
 - Selenium.WebDriver.ChromeDriver
 - Selenium.WebDriver.GeckoDriver
+- Selenium.WebDriver.IEDriver

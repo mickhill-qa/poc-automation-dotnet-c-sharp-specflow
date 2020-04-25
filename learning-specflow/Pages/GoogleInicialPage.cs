@@ -45,7 +45,7 @@ namespace learning_specflow.Pages
         public void ConferirSeEstouNaPaginaInicial()
         {
             String paginaAtual = browser.Url.ToString();
-            Assert.AreEqual(true, url.Equals(paginaAtual));
+            Assert.AreEqual(true, paginaAtual.Contains(url));
         }
     }
 }

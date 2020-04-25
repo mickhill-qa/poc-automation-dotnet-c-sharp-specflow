@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using System;
 using System.Collections.Generic;
 
@@ -18,7 +19,7 @@ namespace learning_specflow.Core.Support
 
         public static IWebDriver GetBrownser()
         {
-            return GetBrownser(Browsers.FIREFOX); // Browser Default
+            return GetBrownser(Browsers.IE); // Browser Default
         }
 
         public static IWebDriver GetBrownser(Browsers browserUser)
@@ -49,13 +50,24 @@ namespace learning_specflow.Core.Support
                     resultBrowser = new ChromeDriver(chromeDriverService, chromeOptionsHeadles);
                     break;
                 case Browsers.FIREFOX:
-                    FirefoxOptions options = new FirefoxOptions();
-                    options.AddAdditionalCapability("acceptInsecureCerts", true, true);
-                    resultBrowser = new FirefoxDriver(options);
+                    FirefoxOptions optionsFirefox = new FirefoxOptions();
+                    optionsFirefox.AddAdditionalCapability("acceptInsecureCerts", true, true);
+                    resultBrowser = new FirefoxDriver(optionsFirefox);
                     break;
                 case Browsers.IE:
-                //Browser = new InternetExplorerDriver();
-                //break;
+                    InternetExplorerOptions optionsIE = new InternetExplorerOptions
+                    {
+                        IntroduceInstabilityByIgnoringProtectedModeSettings = true,
+                        IgnoreZoomLevel = true,
+
+                        //EnablePersistentHover = true,
+                        // EnableNativeEvents = false,
+                        //EnsureCleanSession = true,
+                        //PageLoadStrategy = PageLoadStrategy.None,
+                        //FileUploadDialogTimeout = new TimeSpan(0, 0, 30),
+                    };
+                    resultBrowser = new InternetExplorerDriver(optionsIE);
+                    break;
                 default:
                     throw new NotSupportedException("Browser Nao Suportado");
             }

@@ -21,6 +21,17 @@ namespace learning_specflow.Steps
         {
             browser.Close();
             browser.Dispose();
+            browser.Quit();
+        }
+
+        /**
+         * Destructor
+         */
+        ~BaseSteps()
+        {
+            browser.Close();
+            browser.Dispose();
+            browser.Quit();
         }
     }
 }
