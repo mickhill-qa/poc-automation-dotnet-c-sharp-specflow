@@ -61,7 +61,7 @@ namespace learning_specflow.Core.Support
                         IgnoreZoomLevel = true,
 
                         //EnablePersistentHover = true,
-                        // EnableNativeEvents = false,
+                        //EnableNativeEvents = false,
                         //EnsureCleanSession = true,
                         //PageLoadStrategy = PageLoadStrategy.None,
                         //FileUploadDialogTimeout = new TimeSpan(0, 0, 30),
@@ -71,6 +71,8 @@ namespace learning_specflow.Core.Support
                 default:
                     throw new NotSupportedException("Browser Nao Suportado");
             }
+
+            resultBrowser.Manage().Window.Maximize();
             return resultBrowser;
         }
     }
