@@ -17,6 +17,7 @@ namespace learning_specflow.Pages
 
         public void AbrirPagina()
         {
+            browser.Manage().Window.Maximize();
             browser.Navigate().GoToUrl(url);
         }
 
