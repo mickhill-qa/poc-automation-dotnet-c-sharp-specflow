@@ -18,7 +18,7 @@ namespace learning_specflow.Core.Support
 
         public static IWebDriver GetBrownser()
         {
-            return GetBrownser(Browsers.CHROME); // Browser Default
+            return GetBrownser(Browsers.FIREFOX); // Browser Default
         }
 
         public static IWebDriver GetBrownser(Browsers browserUser)
@@ -28,25 +28,30 @@ namespace learning_specflow.Core.Support
             switch (browserUser)
             {
                 case Browsers.CHROME:
-                    resultBrowser = new ChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.AddArgument("--ignore-certificate-errors");
+                    resultBrowser = new ChromeDriver(chromeOptions);
                     break;
                 case Browsers.CHROME_HEADLESS:
-                    ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.AddArguments(
+                    ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService();
+                    chromeDriverService.HideCommandPromptWindow = true;
+                    ChromeOptions chromeOptionsHeadles = new ChromeOptions();
+                    chromeOptionsHeadles.AddArguments(
                         new List<string>()
                         {
+                            "--ignore-certificate-errors",
                             "--silent-launch",
                             "--no-startup-window",
                             "no-sandbox",
                             "headless",
                         }
                     );
-                    ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService();
-                    chromeDriverService.HideCommandPromptWindow = true;
-                    resultBrowser = new ChromeDriver(chromeDriverService, chromeOptions);
+                    resultBrowser = new ChromeDriver(chromeDriverService, chromeOptionsHeadles);
                     break;
                 case Browsers.FIREFOX:
-                    resultBrowser = new FirefoxDriver();
+                    FirefoxOptions options = new FirefoxOptions();
+                    options.AddAdditionalCapability("acceptInsecureCerts", true, true);
+                    resultBrowser = new FirefoxDriver(options);
                     break;
                 case Browsers.IE:
                 //Browser = new InternetExplorerDriver();
