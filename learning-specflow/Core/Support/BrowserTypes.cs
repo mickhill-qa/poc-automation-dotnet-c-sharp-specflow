@@ -55,24 +55,18 @@ namespace learning_specflow.Core.Support
                     resultBrowser = new FirefoxDriver(optionsFirefox);
                     break;
                 case Browsers.IE:
-                    InternetExplorerOptions optionsIE = new InternetExplorerOptions
-                    {
-                        IntroduceInstabilityByIgnoringProtectedModeSettings = true,
-                        IgnoreZoomLevel = true,
-
-                        //EnablePersistentHover = true,
-                        //EnableNativeEvents = false,
-                        //EnsureCleanSession = true,
-                        //PageLoadStrategy = PageLoadStrategy.None,
-                        //FileUploadDialogTimeout = new TimeSpan(0, 0, 30),
-                    };
+                    InternetExplorerOptions optionsIE = new InternetExplorerOptions();
+                    optionsIE.IgnoreZoomLevel = true;
+                    optionsIE.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
+                    //optionsIE.AddAdditionalCapability(CapabilityType.AcceptSslCertificates, true);
+                    //optionsIE.AddAdditionalCapability(CapabilityType.AcceptInsecureCertificates, true);
                     resultBrowser = new InternetExplorerDriver(optionsIE);
+                    resultBrowser.Manage().Cookies.DeleteAllCookies();
+                    resultBrowser.Manage().Window.Maximize();
                     break;
                 default:
                     throw new NotSupportedException("Browser Nao Suportado");
             }
-
-            resultBrowser.Manage().Window.Maximize();
             return resultBrowser;
         }
     }
