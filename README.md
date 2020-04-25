@@ -3,13 +3,14 @@ Configuração do Projeto de Testes
 BDD + C# + SpecFlow + Selenium.
 
 
+
 **Criar Projeto no Visual Studio**
-- Projeto de Testes > MSTest
+- File > New > Project > Test > MSTest
 
 
 
 **Instalação de plugin na IDE**
-- Extenções > Online > [SpecFlow](https://marketplace.visualstudio.com/items?itemName=TechTalkSpecFlowTeam.SpecFlowForVisualStudio)
+- Extenções > Gerenciador de Extensões > Online > Pesquisar: [SpecFlow](https://marketplace.visualstudio.com/items?itemName=TechTalkSpecFlowTeam.SpecFlowForVisualStudio)
 
 
 
