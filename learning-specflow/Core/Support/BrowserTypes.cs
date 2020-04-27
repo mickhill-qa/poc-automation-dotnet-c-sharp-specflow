@@ -19,7 +19,7 @@ namespace learning_specflow.Core.Support
 
         public static IWebDriver GetBrownser()
         {
-            return GetBrownser(Browsers.IE); // Browser Default
+            return GetBrownser(Browsers.CHROME); // Browser Default
         }
 
         public static IWebDriver GetBrownser(Browsers browserUser)

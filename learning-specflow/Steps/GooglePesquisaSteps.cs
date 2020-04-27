@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace learning_specflow.Steps
 {
     [Binding]
-    class GooglePesquisaSteps : BaseSteps
+    class GooglePesquisaSteps
     {
         GoogleInicialPage paginaInicial;
 
@@ -17,7 +17,7 @@ namespace learning_specflow.Steps
          **/
         public GooglePesquisaSteps()
         {
-            paginaInicial = new GoogleInicialPage(browser);
+            paginaInicial = new GoogleInicialPage(BaseSteps.browser);
         }
 
 

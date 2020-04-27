@@ -4,34 +4,23 @@ using TechTalk.SpecFlow;
 
 namespace learning_specflow.Steps
 {
-    class BaseSteps
+    public class BaseSteps
     {
-        protected IWebDriver browser = BrowserTypes.GetBrownser();
+        public static IWebDriver browser { get; set; }
 
-        /**
-         * Hooks
-         **/
-        [BeforeScenario]
-        public void Init()
+        public static void OpenBrowser()
         {
+            if(browser != null) return;
+
+            browser = BrowserTypes.GetBrownser();
         }
 
-        [AfterScenario]
-        public void Finish()
+        public static void CloseBrowser()
         {
             browser.Close();
             browser.Dispose();
             browser.Quit();
-        }
-
-        /**
-         * Destructor
-         */
-        ~BaseSteps()
-        {
-            browser.Close();
-            browser.Dispose();
-            browser.Quit();
+            browser = null;
         }
     }
 }
