@@ -14,12 +14,13 @@ namespace learning_specflow.Core.Support
             CHROME,
             CHROME_HEADLESS,
             FIREFOX,
+            FIREFOX_HEADLESS,
             IE,
         }
 
         public static IWebDriver GetBrownser()
         {
-            return GetBrownser(Browsers.CHROME); // Browser Default
+            return GetBrownser(Browsers.FIREFOX_HEADLESS); // Browser Default
         }
 
         public static IWebDriver GetBrownser(Browsers browserUser)
@@ -32,6 +33,7 @@ namespace learning_specflow.Core.Support
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.AddArgument("--ignore-certificate-errors");
                     resultBrowser = new ChromeDriver(chromeOptions);
+                    resultBrowser.Manage().Window.Maximize();
                     break;
                 case Browsers.CHROME_HEADLESS:
                     ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService();
@@ -53,13 +55,18 @@ namespace learning_specflow.Core.Support
                     FirefoxOptions optionsFirefox = new FirefoxOptions();
                     optionsFirefox.AddAdditionalCapability("acceptInsecureCerts", true, true);
                     resultBrowser = new FirefoxDriver(optionsFirefox);
+                    resultBrowser.Manage().Window.Maximize();
+                    break;
+                case Browsers.FIREFOX_HEADLESS:
+                    FirefoxOptions optionsFirefoxHeadless = new FirefoxOptions();
+                    optionsFirefoxHeadless.AddAdditionalCapability("acceptInsecureCerts", true, true);
+                    optionsFirefoxHeadless.AddArguments("--headless");
+                    resultBrowser = new FirefoxDriver(optionsFirefoxHeadless);
                     break;
                 case Browsers.IE:
                     InternetExplorerOptions optionsIE = new InternetExplorerOptions();
                     optionsIE.IgnoreZoomLevel = true;
                     optionsIE.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
-                    //optionsIE.AddAdditionalCapability(CapabilityType.AcceptSslCertificates, true);
-                    //optionsIE.AddAdditionalCapability(CapabilityType.AcceptInsecureCertificates, true);
                     resultBrowser = new InternetExplorerDriver(optionsIE);
                     resultBrowser.Manage().Cookies.DeleteAllCookies();
                     resultBrowser.Manage().Window.Maximize();
